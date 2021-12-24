@@ -5,16 +5,21 @@ import "./app.css"
 import axios from "axios"
 import { format } from "timeago.js"
 import { Button } from '@material-ui/core';
+import Register from './components/Register';
+import Login from './components/Login';
 
 
 function App() {
-    const currentUser = "Victor"
+    const myStorage = window.localStorage;
+    const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"));
     const [pins, setPins] = useState([]);
     const [currentPlaceId, setCurrentPlaceId] = useState(null);
     const [newPlace, setNewPlace] = useState(null);
     const [title, setTitle] = useState(null);
     const [desc, setDesc] = useState(null);
     const [rating, setRating] = useState(0);
+    const [showRegister, setShowRegister] = useState(false);
+    const [showLogin, setShowLogin] = useState(false);
     const [viewport, setViewport] = useState({
         width: "100vw",
         height: "100vh",
@@ -74,6 +79,11 @@ function App() {
             
         }
 
+    }
+
+    const handleLogout = () => {
+        myStorage.removeItem("user");
+        setCurrentUser(null);
     }
 
     return (
@@ -166,12 +176,18 @@ function App() {
                         </div>
 
                     </Popup>)}
-                    {currentUser ? (<button className="button logout">Logout</button>
+                    {currentUser ? (<button className="button logout" onClick={handleLogout} >Logout</button>
                     ):(
                          <div className="buttons">
-                            <button className="button login">Login</button>
-                            <button className="button register">Register</button>
+                            <button className="button login" onClick={()=>setShowLogin(true)}>Login</button>
+                            <button className="button register"onClick={()=>setShowRegister(true)} >Register</button>
                         </div>)}
+                        {showRegister && <Register setShowRegister={setShowRegister}></Register> }
+                        {showLogin && <Login 
+                        setShowLogin={setShowLogin} 
+                        myStorage={myStorage} 
+                        setCurrentUser={setCurrentUser}>
+                        </Login>}
             </ReactMapGL>
         </div>
     );

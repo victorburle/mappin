@@ -74,6 +74,7 @@ input ::placeholder, textarea ::placeholder{
 }
 .login {
     background-color: teal;
+    margin-right: 10px;
     
 }
 .register {

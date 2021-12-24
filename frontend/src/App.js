@@ -93,9 +93,11 @@ function App() {
                 {...viewport}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapStyle="mapbox://styles/safak/cknndpyfq268f17p53nmpwira"
+                /*mapStyle="mapbox://styles/safak/cknndpyfq268f17p53nmpwira"*/
+                /*mapStyle="mapbox://styles/victorburle/ckxkhdsrv2ag414oaa53rllng"*/
+                mapStyle="mapbox://styles/victorburle/ckxkp12sd2j4715p93e2ypgnd"
                 onDblClick={handleAddClick}
-                /*transitionDuration="200"*/
+                transitionDuration="100"
             >
                 {pins.map((p) => (
                     <>
@@ -103,12 +105,12 @@ function App() {
                         <Marker
                             latitude={p.lat}
                             longitude={p.long}
-                            offsetLeft={-viewport.zoom * 3.5}
-                            offsetTop={-viewport.zoom * 7}
+                            offsetLeft={-viewport.zoom * 2.5}
+                            offsetTop={-viewport.zoom * 5}
                         >
                             <Room
                                 style={{
-                                    fontSize: viewport.zoom * 7,
+                                    fontSize: viewport.zoom * 5,
                                     color: p.username === currentUser ? "tomato" : "slateblue",
                                     cursor: "pointer"
                                 }}

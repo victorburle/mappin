@@ -185,7 +185,8 @@ function App() {
                             <button className="button register"onClick={()=>setShowRegister(true)} >Register</button>
                         </div>)}
                         {showRegister && <Register setShowRegister={setShowRegister}></Register> }
-                        {showLogin && <Login 
+                        {showLogin && 
+                        <Login 
                         setShowLogin={setShowLogin} 
                         myStorage={myStorage} 
                         setCurrentUser={setCurrentUser}>
